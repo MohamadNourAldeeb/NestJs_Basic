@@ -1,0 +1,26 @@
+to create migrations files :
+npx sequelize-cli init  
+
+to generate new migrations :
+npx sequelize-cli migration:generate --name  seeker_index   
+
+
+to make migrate :
+npx sequelize-cli db:migrate    
+
+to undo last migrate :
+npx sequelize-cli db:migrate:undo     
+
+to make seed file :
+npx sequelize-cli seed:generate --name demo-user    
+
+
+to run all seed files :
+npx sequelize-cli db:seed:all   
+
+
+to run specific seed file :
+npx sequelize-cli db:seed --seed 20250601123830-demo-languages.js  
+
+to undo specific seed file :
+npx sequelize-cli db:seed:undo --seed name-of-seed-as-in-data

@@ -1,0 +1,96 @@
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>Invoice</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        line-height: 1.6;
+      }
+      .invoice-header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .invoice-header h1 {
+        font-size: 24px;
+        color: #333;
+      }
+      .invoice-details {
+        margin-bottom: 20px;
+        text-align: right;
+      }
+      .invoice-details p {
+        margin: 5px 0;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+      table th,
+      table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: right;
+      }
+      table th {
+        background-color: #f4f4f4;
+      }
+      .total-section {
+        margin-top: 20px;
+        text-align: right;
+      }
+      .total-section p {
+        margin: 5px 0;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class='invoice-header'>
+
+      <img src='http://localhost:4000/uploads/jena-logo.png' width='100' />
+      <p> {{invoice_id}} <strong> : رقم الفاتورة </strong></p>
+      <p> {{customer_name}}<strong>: اسم الزبون </strong> </p>
+
+    </div>
+
+    <div class='invoice-details'>
+      <h2>المواد</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ملاحظات</th>
+            <th>القيمة الإجمالية</th>
+            <th>الكمية</th>
+            <th>السعر</th>
+            <th>اسم المادة</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each products}}
+            <tr>
+              <td>{{note}}</td>
+              <td>${{total_amount}}</td>
+              <td>{{quantity}}</td>
+              <td>${{product.price}}</td>
+              <td>{{product.name}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+
+    <div class='total-section'>
+      <p><strong>Total Amount:</strong> ${{total_amount}}</p>
+      <p><strong>USD Amount:</strong> ${{usd_amount}}</p>
+      <p><strong>SP Amount:</strong> {{sp_amount}}</p>
+      <p><strong>Paid Products:</strong> {{paid_products}}</p>
+      <p><strong>Gift Products:</strong> {{gift_products}}</p>
+      <p><strong>Remaining Amount:</strong> ${{remaining_amount}}</p>
+    </div>
+    <p style='text-align: right;'>{{invoice_date}}</p>
+  </body>
+</html>
